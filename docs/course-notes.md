@@ -83,4 +83,68 @@ SELECT AVG(salary) AS average_salary FROM employees;
 
 # 2.Storage
 
-Amazon s3
+* Amazon s3 stands for Simple Storage Service
+
+## S3 bucket policy
+* user-based vs resource based (IAM vs bucket policies, acl)
+* Examples:
+    * User access to s3 -> IAM Permissions
+    * EC2 instance acesss -> IAM Roles
+    * Cross account access -> bucket policy
+
+## S3 Versioning
+* lets you see how files change
+* deletion results in delete marker
+* versioning required for crr/srr (cross region/same region replication)
+
+## S3 Storage Classes
+* Standard - General Purpose
+* Standard-Infrequent Access (IA) - disaster recovery, backups
+* One Zone-Infrequent Access - secondary backups, data can be created
+* Glacier Instant Retrieval - once a quarter, quick acess
+* Glacier Flexible Retrieval - takes longer
+* Glacier Deep Archive - even longer
+* Intelligent Tiering - moves object between intelligent tiering
+* express one zone - good for etls/streaming
+
+## S3 Lifecycle rules
+* Transition, Expiration actions
+* lets you decide what storage classes the objects have over time.
+
+## S3 Event notifications
+* events: objects removed, createded, restored, replicated
+* s3 event notifications relates to iam permsiions (Resource access policy)
+* events can be sent to sqs (simple queue service), sns (simple notification service) or lambda
+* events can also be sent to Amazon EventBridge (which can apply rules to 18 other aws services)
+
+hands on
+* s3 bucket -> properties -> events and notifications -> create event notification
+* sqs -> create queue -> queue policy -> edit access policy -> generate policy for sqs resource to detect object creation events in s3
+* s3 -> create event notification with existing sqs queue
+
+
+## S3 Performance
+* per prefix performance
+* multipart performance better
+* transfer acceleration. (to public local location, privately sends to desired s3 region)
+* s3 byte range fetches
+
+## S3 object encryption
+* sse (server side encryption) sse-s3, sse-kms (key management service)
+* sse-c (client)
+* client side encryption - encrypt before sending to s3
+* DSSE-KMS "Dual layer server side encryption"
+
+hands on 3 ways:
+* Create s3 bucket with versioning on -> upload file -> edit file to use differen encryption -> creates new version of file
+* default encryption type of s3 bucket
+* When uploading file, there is option to set encryption type
+
+## S3 Access points
+* ways of accessing s3 buckets
+* simplifies security management for s3 bucket
+* each access point has individual dns
+
+## S3 Object Lambda
+
+

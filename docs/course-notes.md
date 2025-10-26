@@ -92,7 +92,7 @@ SELECT AVG(salary) AS average_salary FROM employees;
     * EC2 instance acesss -> IAM Roles
     * Cross account access -> bucket policy
 
-## S3 Versioning
+## S3 Versioning & Replication
 * lets you see how files change
 * deletion results in delete marker
 * versioning required for crr/srr (cross region/same region replication)
@@ -146,5 +146,31 @@ hands on 3 ways:
 * each access point has individual dns
 
 ## S3 Object Lambda
+* Use Lambda to change object before retrieved
+* s3 bucket -> supporting s3 access point -> lambda -> s3 object lambda access point -> caller
 
 
+## S3 Storage lens
+* service to analyse, optomise storage access
+
+## EC2 Instance Storage
+* EBS (Elastic Block store) volume -> network drive you can attach to your instances while they run
+* EBS volume mount to one instance at a time. 
+* locked in availabilty zones
+* delete on termination attribute -> ebs behaviour when instance terminates
+
+hands on:
+* go on ec2 instance -> add/modify ebs volume per instance. 
+
+## EFS (Elastic file system)
+* managed nfs that can mount to many instances (ec2)
+* expensive (3x gp2 ebs volume)
+* multi az
+* storage classes:
+    * standard
+    * infrequent access
+    * archive
+* lifecycle policies
+
+hands on:
+* EFS -> create file system
